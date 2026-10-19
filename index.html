@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Women's Day 20/10</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #190b2d, #51164f, #70255e);
+}
+
+/* MÀN HÌNH CÂU HỎI */
+#quiz {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #190b2d, #51164f, #70255e);
+}
+
+.quiz-box {
+    width: min(420px, 95vw);
+    padding: 28px 22px;
+    text-align: center;
+    border: 1px solid #ffc1e8;
+    border-radius: 24px;
+    background: #531d59;
+    box-shadow: 0 0 35px #ff70d455;
+}
+
+.quiz-box h1 {
+    color: #ffd0f5;
+    text-shadow: 0 0 15px #ff61d5;
+}
+
+.answers {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+button {
+    border: none;
+    border-radius: 14px;
+    padding: 13px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #e94fa8;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.15);
+}
+
+#message {
+    min-height: 44px;
+    line-height: 1.5;
+}
+
+#continueBtn {
+    background: linear-gradient(90deg, #ff4eaa, #9c50ff);
+}
+
+/* MÀN HÌNH CHÚC MỪNG */
+#celebration {
+    display: none;
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+}
+
+#fireworks {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heading {
+    position: absolute;
+    z-index: 2;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    padding: 0 12px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.heading h1 {
+    margin: 0;
+    font-size: clamp(23px, 3.5vw, 42px);
+    color: #ffd0f5;
+    text-shadow: 0 0 12px #ff4bc8;
+}
+
+.heading p {
+    margin: 8px 0 0;
+    font-size: clamp(13px, 1.8vw, 18px);
+    color: #ffe4f8;
+}
+
+/* BỐ CỤC CÁC Ô: CHIA VÙNG ĐỂ KHÔNG CHỒNG LÊN NHAU */
+#words {
+    position: absolute;
+    top: 112px;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+}
+
+.floating {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    border: 1px solid #ffc5e877;
+    border-radius: 18px;
+    background: #70265c99;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 14px #ff70d422;
+
+    color: #fff4fc;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+
+    animation: gentleFloat 3s ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s);
+    will-change: transform;
+}
+
+.floating strong {
+    display: block;
+    margin: 5px 0 7px;
+    color: #ffd0f5;
+    font-size: clamp(13px, 1.45vw, 19px);
+    text-shadow: 0 0 8px #ff8ce3;
+}
+
+.floating .emoji {
+    font-size: clamp(18px, 2vw, 25px);
+}
+
+.floating span {
+    font-size: clamp(11px, 1.2vw, 15px);
+}
+
+@keyframes gentleFloat {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, -7px);
+    }
+
+    100% {
+        transform: translate(0, 5px);
+    }
+}
+
+/* ĐIỆN THOẠI */
+@media (max-width: 650px) {
+    .heading {
+        top: 8px;
+    }
+
+    .heading h1 {
+        font-size: 23px;
+    }
+
+    .heading p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    #words {
+        top: 82px;
+        bottom: 5px;
+        padding: 7px;
+        gap: 7px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(6, minmax(0, 1fr));
+    }
+
+    .floating {
+        padding: 6px 5px;
+        border-radius: 13px;
+        line-height: 1.25;
+    }
+
+    .floating strong {
+        font-size: 12px;
+        margin: 3px 0 5px;
+    }
+
+    .floating .emoji {
+        font-size: 17px;
+    }
+
+    .floating span {
+        font-size: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating {
+        animation: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CÂU HỎI -->
+<div id="quiz">
+    <div class="quiz-box">
+        <h1>🎀 CÂU HỎI NHỎ 🎀</h1>
+        <h2>1 + 1 = ?</h2>
+
+        <div class="answers">
+            <button onclick="wrongAnswer()">A. 2</button>
+            <button onclick="wrongAnswer()">B. 10</button>
+        </div>
+
+        <p id="message">Chọn đáp án đi nàooo 😝</p>
+
+        <button id="continueBtn" onclick="goToCelebration()">
+            BẤM VÀO ĐÂY ĐỂ XEM ĐÁP ÁN!
+        </button>
+    </div>
+</div>
+
+<!-- CHÚC MỪNG -->
+<div id="celebration">
+    <canvas id="fireworks"></canvas>
+
+    <div class="heading">
+        <h1>🌸 HAPPY WOMEN'S DAY 🌸</h1>
+        <p>Chúc Dung 20/10 thật vui vẻ và hạnh phúc 💗</p>
+    </div>
+
+    <div id="words"></div>
+</div>
+
+<script>
+function wrongAnswer() {
+    document.getElementById("message").innerHTML =
+        "❌ Sai rồi nhaaa 😝<br>Bấm nút bên dưới để tiếp tục nhé!";
+}
+
+function goToCelebration() {
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("celebration").style.display = "block";
+
+    createFloatingWords();
+    startFireworks();
+}
+
+const wishes = [
+    ["20/10 vui vẻ nhooo Dungg", "Chúc Dung 20/10 tràn ngập niềm vuiiiii 💗"],
+    ["Để ý toi 1 tiiii", "duong ý!!!!!"],
+    ["Xinh đẹp hơn nữa 🌸", "Chuẩn bị đi thi hoa hậu thôiiii 😆"],
+    ["HAPPY WOMEN'S DAY", "Chúc Dung có một ngày thật đặc biệt và đáng nhớ!"],
+    ["Yeu doi", "yeu thuong bản thân nhiều hơn nho, lạc quan va yeuu doi"],
+    ["No1 💖", "Luôn là chính mình"],
+    ["Ngày càng bá khí", "Gánh hết phần của tôi nho 😎"],
+    ["Siêu cấp học bá!!", "Giỏi all môn nhé, còn kèm duong"],
+    ["Sự nghiệp thăng tiến", "Len lam lop truong diiii"],
+    ["Bỏ qua muộn phiền", "Cười nhiều hơn và tận hưởng tuổi trẻ nhé!"],
+];
+
+const emojis = [
+    "💝 🌷", "🎀 🌹", "🌸 💖", "💗 🎉",
+    "🧸 💕", "🌻 💖", "🦋 🌷", "🎀 💐",
+    "🌺 💗", "💞 🌸", "🌷 ✨", "💖 🎊"
+];
+
+function createFloatingWords() {
+    const container = document.getElementById("words");
+    container.innerHTML = "";
+
+    wishes.forEach((wish, index) => {
+        const card = document.createElement("div");
+        card.className = "floating";
+
+        // Mỗi thẻ có tốc độ nhấp nhô hơi khác nhau
+        card.style.setProperty(
+            "--delay",
+            (-Math.random() * 3).toFixed(2) + "s"
+        );
+
+        card.innerHTML = `
+            <div class="emoji">${emojis[index]}</div>
+            <strong>${wish[0]}</strong>
+            <span>${wish[1]}</span>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+// PHÁO HOA LIÊN TỤC
+function startFireworks() {
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    let lastBurst = 0;
+
+    function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const colors = [
+        "#ff70d5", "#ffe66d", "#72ff8a",
+        "#a879ff", "#ffffff", "#ff8b55"
+    ];
+
+    function burst() {
+        const x = 20 + Math.random() * (window.innerWidth - 40);
+        const y = 30 + Math.random() * window.innerHeight * 0.55;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const amount = 45 + Math.floor(Math.random() * 30);
+
+        for (let i = 0; i < amount; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 1 + Math.random() * 3.5;
+
+            particles.push({
+                x: x,
+                y: y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 45 + Math.random() * 35,
+                maxLife: 80,
+                color: color,
+                size: 1 + Math.random() * 2.2
+            });
+        }
+    }
+
+    function animate(time) {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        // Tạo pháo hoa định kỳ
+        if (time - lastBurst > 480) {
+            burst();
+            lastBurst = time;
+        }
+
+        particles = particles.filter(p => p.life > 0);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vx *= 0.985;
+            p.vy *= 0.985;
+            p.vy += 0.025;
+            p.life--;
+
+            ctx.globalAlpha = Math.min(1, p.life / 20);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+}
+</script>
+
+</body>
+</html>
